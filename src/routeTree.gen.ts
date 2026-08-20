@@ -10,11 +10,41 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EmailRouteImport } from './routes/email'
+import { Route as PlannerRouteImport } from './routes/planner'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SummarizerRouteImport } from './routes/summarizer'
+import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmailRoute = EmailRouteImport.update({
+  id: '/email',
+  path: '/email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlannerRoute = PlannerRouteImport.update({
+  id: '/planner',
+  path: '/planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SummarizerRoute = SummarizerRouteImport.update({
+  id: '/summarizer',
+  path: '/summarizer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TasksRoute = TasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiChatRoute = ApiChatRouteImport.update({
@@ -25,27 +55,69 @@ const ApiChatRoute = ApiChatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/email': typeof EmailRoute
+  '/planner': typeof PlannerRoute
+  '/settings': typeof SettingsRoute
+  '/summarizer': typeof SummarizerRoute
+  '/tasks': typeof TasksRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/email': typeof EmailRoute
+  '/planner': typeof PlannerRoute
+  '/settings': typeof SettingsRoute
+  '/summarizer': typeof SummarizerRoute
+  '/tasks': typeof TasksRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/email': typeof EmailRoute
+  '/planner': typeof PlannerRoute
+  '/settings': typeof SettingsRoute
+  '/summarizer': typeof SummarizerRoute
+  '/tasks': typeof TasksRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/chat'
+  fullPaths:
+    | '/'
+    | '/email'
+    | '/planner'
+    | '/settings'
+    | '/summarizer'
+    | '/tasks'
+    | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/chat'
-  id: '__root__' | '/' | '/api/chat'
+  to:
+    | '/'
+    | '/email'
+    | '/planner'
+    | '/settings'
+    | '/summarizer'
+    | '/tasks'
+    | '/api/chat'
+  id:
+    | '__root__'
+    | '/'
+    | '/email'
+    | '/planner'
+    | '/settings'
+    | '/summarizer'
+    | '/tasks'
+    | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EmailRoute: typeof EmailRoute
+  PlannerRoute: typeof PlannerRoute
+  SettingsRoute: typeof SettingsRoute
+  SummarizerRoute: typeof SummarizerRoute
+  TasksRoute: typeof TasksRoute
   ApiChatRoute: typeof ApiChatRoute
 }
 
@@ -56,6 +128,41 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/email': {
+      id: '/email'
+      path: '/email'
+      fullPath: '/email'
+      preLoaderRoute: typeof EmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/planner': {
+      id: '/planner'
+      path: '/planner'
+      fullPath: '/planner'
+      preLoaderRoute: typeof PlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/summarizer': {
+      id: '/summarizer'
+      path: '/summarizer'
+      fullPath: '/summarizer'
+      preLoaderRoute: typeof SummarizerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tasks': {
+      id: '/tasks'
+      path: '/tasks'
+      fullPath: '/tasks'
+      preLoaderRoute: typeof TasksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/chat': {
@@ -70,6 +177,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EmailRoute: EmailRoute,
+  PlannerRoute: PlannerRoute,
+  SettingsRoute: SettingsRoute,
+  SummarizerRoute: SummarizerRoute,
+  TasksRoute: TasksRoute,
   ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
